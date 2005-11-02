@@ -3,12 +3,12 @@
 Summary:	Apache module: Virtual Hosting
 Summary(pl):	Modu³ do Apache: wirtualny hosting
 Name:		apache-mod_%{mod_name}
-Version:	1.0.16
+Version:	1.0.26
 Release:	0.1
 License:	Apache
 Group:		Networking/Daemons
 Source0:	http://www.oav.net/projects/mod_vhs/mod_vhs-%{version}.tar.gz
-# Source0-md5:	3f7075c7d63c0b366bd595b90980832e
+# Source0-md5:	deb33f6104ca5453ec16a7056d44cc0b
 URL:		http://www.oav.net/projects/mod_vhs/
 BuildRequires:	apache-devel >= 2.0.0
 BuildRequires:	%{apxs}
@@ -60,5 +60,5 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README THANKS TODO WARNING.THREADS
+%doc AUTHORS ChangeLog README* THANKS TODO WARNING*
 %attr(755,root,root) %{_pkglibdir}/*
