@@ -1,3 +1,5 @@
+# TODO
+# - fix build with apache 2.2 (regex_t)
 %define		mod_name	vhs
 %define 	apxs		/usr/sbin/apxs
 Summary:	Apache module: Virtual Hosting
@@ -13,11 +15,11 @@ URL:		http://www.oav.net/projects/mod_vhs/
 BuildRequires:	apache-devel >= 2.0.0
 BuildRequires:	%{apxs}
 BuildRequires:	libhome-devel
-Requires(post,preun):	%{apxs}
-Requires:	apache >= 2.0.0
+Requires:	apache(modules-api) = %apache_modules_api
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
+%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
+%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)
 
 %description
 mod_vhs is an Apache 2.0 Web Server module allowing mass virtual
@@ -39,8 +41,11 @@ wspieranej przez libhome w momencie wys³ania zapytania.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd.conf}
 
-install -D .libs/mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}/mod_%{mod_name}.so
+install .libs/mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
+echo 'LoadModule %{mod_name}_module modules/mod_%{mod_name}.so' > \
+	$RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/90_mod_%{mod_name}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -52,7 +57,6 @@ fi
 
 %preun
 if [ "$1" = "0" ]; then
-	umask 027
 	if [ -f /var/lock/subsys/httpd ]; then
 		/etc/rc.d/init.d/httpd restart 1>&2
 	fi
@@ -61,4 +65,5 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README* THANKS TODO WARNING*
-%attr(755,root,root) %{_pkglibdir}/*
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*_mod_%{mod_name}.conf
+%attr(755,root,root) %{_pkglibdir}/*.so
