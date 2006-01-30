@@ -1,16 +1,14 @@
-# TODO
-# - fix build with apache 2.2 (regex_t)
 %define		mod_name	vhs
 %define 	apxs		/usr/sbin/apxs
 Summary:	Apache module: Virtual Hosting
 Summary(pl):	Modu³ do Apache: wirtualny hosting
 Name:		apache-mod_%{mod_name}
-Version:	1.0.26
-Release:	0.1
+Version:	1.0.30
+Release:	1
 License:	Apache
 Group:		Networking/Daemons
 Source0:	http://www.oav.net/projects/mod_vhs/mod_vhs-%{version}.tar.gz
-# Source0-md5:	deb33f6104ca5453ec16a7056d44cc0b
+# Source0-md5:	0ff70c7298e8639a00b2b0c1d90caf99
 URL:		http://www.oav.net/projects/mod_vhs/
 BuildRequires:	apache-devel >= 2.0.0
 BuildRequires:	%{apxs}
@@ -37,7 +35,7 @@ wspieranej przez libhome w momencie wys³ania zapytania.
 %setup -q -n mod_vhs
 
 %build
-%{apxs} -c mod_vhs.c
+%{apxs} -c -DDEBIAN=1 mod_vhs.c
 
 %install
 rm -rf $RPM_BUILD_ROOT
