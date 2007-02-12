@@ -1,7 +1,7 @@
 %define		mod_name	vhs
 %define 	apxs		/usr/sbin/apxs
 Summary:	Apache module: Virtual Hosting
-Summary(pl):	Modu≥ do Apache: wirtualny hosting
+Summary(pl.UTF-8):   Modu≈Ç do Apache: wirtualny hosting
 Name:		apache-mod_%{mod_name}
 Version:	1.0.30
 Release:	1
@@ -26,11 +26,11 @@ hosting without the need for file based configuration. The virtual
 host paths are translated from a any database supported by libhome at
 request time.
 
-%description -l pl
-mod_vhs jest modu≥em dla serwera Apache 2.0 daj±cy moøliwo∂Ê
+%description -l pl.UTF-8
+mod_vhs jest modu≈Çem dla serwera Apache 2.0 dajƒÖcy mo≈ºliwo≈õƒá
 skonfigurowania masowego wirtualnego hostingu bez potrzeby trzymania
-ustawieÒ w plikach. Wirtualne ∂cieøki t≥umaczone s± z dowolnej bazy
-wspieranej przez libhome w momencie wys≥ania zapytania.
+ustawie≈Ñ w plikach. Wirtualne ≈õcie≈ºki t≈Çumaczone sƒÖ z dowolnej bazy
+wspieranej przez libhome w momencie wys≈Çania zapytania.
 
 %prep
 %setup -q -n mod_vhs
