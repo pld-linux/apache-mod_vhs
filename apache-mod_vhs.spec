@@ -1,7 +1,7 @@
 %define		mod_name	vhs
 %define 	apxs		/usr/sbin/apxs
 Summary:	Apache module: Virtual Hosting
-Summary(pl.UTF-8):   Moduł do Apache: wirtualny hosting
+Summary(pl.UTF-8):	Moduł do Apache: wirtualny hosting
 Name:		apache-mod_%{mod_name}
 Version:	1.0.30
 Release:	1
