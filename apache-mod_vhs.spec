@@ -10,7 +10,7 @@ Group:		Networking/Daemons
 Source0:	http://www.oav.net/projects/mod_vhs/mod_vhs-%{version}.tar.gz
 # Source0-md5:	0ff70c7298e8639a00b2b0c1d90caf99
 URL:		http://www.oav.net/projects/mod_vhs/
-BuildRequires:	apache-apxs >= 2.0
+BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0.0
 BuildRequires:	libhome-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
