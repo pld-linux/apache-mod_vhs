@@ -4,7 +4,7 @@ Summary:	Apache module: Virtual Hosting
 Summary(pl.UTF-8):	Moduł do Apache: wirtualny hosting
 Name:		apache-mod_%{mod_name}
 Version:	1.0.32
-Release:	1
+Release:	2
 License:	Apache
 Group:		Networking/Daemons
 Source0:	http://www.oav.net/projects/mod_vhs/mod_vhs-%{version}.tar.gz
@@ -36,15 +36,15 @@ wspieranej przez libhome w momencie wysłania zapytania.
 %setup -q -n mod_vhs
 
 %build
-%{apxs} -c -DDEBIAN=1 mod_vhs.c
+%{apxs} -c -DDEBIAN=1 -l home mod_vhs.c
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd.conf}
+install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/conf.d}
 
 install .libs/mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
 echo 'LoadModule %{mod_name}_module modules/mod_%{mod_name}.so' > \
-	$RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/90_mod_%{mod_name}.conf
+	$RPM_BUILD_ROOT%{_sysconfdir}/conf.d/90_mod_%{mod_name}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -60,5 +60,5 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README* THANKS TODO WARNING*
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*_mod_%{mod_name}.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conf.d/*_mod_%{mod_name}.conf
 %attr(755,root,root) %{_pkglibdir}/*.so
