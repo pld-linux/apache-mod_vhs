@@ -6,7 +6,7 @@ Name:		apache-mod_%{mod_name}
 Version:	1.0.32
 Release:	2
 License:	Apache
-Group:		Networking/Daemons
+Group:		Networking/Daemons/HTTP
 Source0:	http://www.oav.net/projects/mod_vhs/mod_vhs-%{version}.tar.gz
 # Source0-md5:	bccb58b68639c2ece2d6f0adc1628ec1
 URL:		http://www.oav.net/projects/mod_vhs/
